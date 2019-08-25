@@ -7,7 +7,8 @@ let hash = hashA['hash']
 //2生成键盘,
 createKeyboard(keys,hash)
 
-
+//3监听键盘
+listenToKeyBorad(hash)
 //初始化
 function init(){
     let keys = new Array(
@@ -15,9 +16,10 @@ function init(){
         ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
         ['z', 'x', 'c', 'v', 'b', 'n', 'm']
     )
-    let hash = {
-        'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
-    } 
+    // let hash = {
+    //     'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
+    // } 
+    let hash = {'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me','i': 'iqiyi.com',  'z': 'zhihu.com',}
     //取出localStorage中的ZZZ对应的hash
     let hashInLocalStorage = getFromLocalStorage('ZZZ')
     if(hashInLocalStorage){
@@ -105,5 +107,14 @@ function createKeyboard(keys,hash){
             div.appendChild(kbd)
         }
         
+    }
+}
+
+//监听键盘事件
+function listenToKeyBorad(hash){
+    document.onkeypress = function(event){
+        var key = event.key
+        var website = hash[key]
+        window.open(`http://${website}`,'_blank')
     }
 }
